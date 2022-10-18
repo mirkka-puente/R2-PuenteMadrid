@@ -145,13 +145,11 @@ d0$maximum <- maxs
 
 #Installing packages
 install.packages("writexl")
-library("writexl")
-write_xlsx(
-  d0,
-  path = tempfile(fileext = "Mirkka_Puente.xlsx"),
-  col_names = TRUE,
-  format_headers = TRUE,
-  use_zip64 = FALSE
-)
+library(writexl)
 
+write_xlsx(d0, path = tempfile(fileext = "Mirkka_Puente.xlsx"),
+           col_names = TRUE,
+           format_headers = TRUE,
+           use_zip64 = FALSE
+           )
 
