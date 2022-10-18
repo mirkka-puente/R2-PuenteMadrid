@@ -1,6 +1,11 @@
 # Mirkka Jossette Puente Madrid
 # October 18th, 2022
 
+install.packages("writexl")
+library(writexl)
+install.packages("xlsx")
+library(xlsx)
+
 #################### EXERCISES ###################
 #1. Open the data frame in iris {datasets}. Use the help to know 
 #about this data. In which units are measured the length and width 
@@ -143,16 +148,11 @@ d0$maximum <- maxs
 #6. Install the package “writexl” and use the command write_xlsx 
 #to create a “yourname.xlsx” file with your data frame.
 
-#Installing packages
-install.packages("writexl")
-library(writexl)
+write_xlsx(
+  list(mysheet = d0),
+  path = tempfile(fileext = "MirkkaPuente.xlsx"),
+  col_names = TRUE,
+  format_headers = TRUE,
+  use_zip64 = FALSE
+)
 
-write_xlsx(d0, path = tempfile(fileext = "Mirkka_Puente.xlsx"),
-           col_names = TRUE,
-           format_headers = TRUE,
-           use_zip64 = FALSE
-           )
-install.packages("xlsx")
-library(xlsx)
-write_xlsx(d0, file="Mirkka_Puente.xlsx", 
-           sheetName="Mirkka")
