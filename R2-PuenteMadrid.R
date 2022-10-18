@@ -2,7 +2,7 @@
 # October 18th, 2022
 
 #Install packages (to be run first and one time only)
-#install.packages("writexl")
+install.packages("writexl")
 
 #################### EXERCISES ###################
 #1. Open the data frame in iris {datasets}. Use the help to know 
@@ -166,12 +166,6 @@ p <- 'MirkkaPuente.xlsx'
 #Actually create the excel file
 #Running library
 library(writexl)
-write_xlsx(
-  d0,
-  path = tempfile(fileext = p),
-  col_names = TRUE,
-  format_headers = TRUE,
-  use_zip64 = FALSE
-)
+write_xlsx(d0,p)
 
 
