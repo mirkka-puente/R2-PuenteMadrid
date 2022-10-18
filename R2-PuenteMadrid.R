@@ -88,6 +88,3 @@ d0$means <- (means)
 
 
 
-
-#iris$Sepal.length = iris[[1]] = iris["Sepal.length]
-# c(antiguevector, siguiente)
