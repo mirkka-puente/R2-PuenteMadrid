@@ -1,10 +1,8 @@
 # Mirkka Jossette Puente Madrid
 # October 18th, 2022
 
-install.packages("writexl")
-library(writexl)
-install.packages("xlsx")
-library(xlsx)
+#Install packages (to be run first and one time only)
+#install.packages("writexl")
 
 #################### EXERCISES ###################
 #1. Open the data frame in iris {datasets}. Use the help to know 
@@ -26,7 +24,7 @@ help(iris)
 #be with capital letters and species in small letters 
 #(e.g. “Iris setosa”).
 
-#vector with species name only
+#vector with species name only (use levels)
 species_name <- levels(iris$Species)
 
 #vector with genus and species
@@ -57,6 +55,7 @@ data <- data.frame(all_genus_species, all_quantitative_variables)
 
 
 #5. Using data frame from exercise 4, make a data frame with the following variables:
+
 #Species.
 #Variable.
 #Mean, the mean for each variable and species.
@@ -68,7 +67,7 @@ data <- data.frame(all_genus_species, all_quantitative_variables)
 #Species
 d0 <- data.frame(species=data$all_genus_species)
 
-#Variable
+#Variables
 d0$variables <- (data$all_quantitative_variables)
 
 #Mean
@@ -82,8 +81,10 @@ d0$variables <- (data$all_quantitative_variables)
 #mean(iris$Sepal.Width[setosa])
 #####################################
 
+#Mean
 #Empty vector for means
 means <- c()
+#For loops to get the mean
 for (sp in levels(iris$Species)){
   for (i in 1:4){
     s <- iris$Species == sp
@@ -91,11 +92,14 @@ for (sp in levels(iris$Species)){
   }
 }
 
+#Adding the column mean to data.frame
 d0$means <- (means)
 
 #Standard_error, the standard error for each variable and species.
+#N = number of observations
 l <- length(iris$Species)
 
+#empty vector to save standard_error
 standard_errors <- c()
 
 for (sp in levels(iris$Species)){
@@ -106,10 +110,13 @@ for (sp in levels(iris$Species)){
     standard_errors <- c(standard_errors,se)
   }
 }
+
+#Adding the column standard errors to data.frame
 d0$standard_error <- standard_errors
 
 #Median, the median for each variable and species.
 
+#Empty vectors to keep medians
 medians <- c()
 
 for (sp in levels(iris$Species)){
@@ -118,9 +125,11 @@ for (sp in levels(iris$Species)){
     medians <- c(medians, median(iris[[i]][species]))
   }
 }
+#Adding the column medians to data.frame
 d0$median <- medians
 
 #Minimum, the minimum for each variable and species.
+#Empty vector to keep minimums
 mins <- c()
 
 for (sp in levels(iris$Species)){
@@ -130,10 +139,12 @@ for (sp in levels(iris$Species)){
   }
 }
 
+#Adding the column minimum to data.frame
 d0$minimum <- mins
 
 
 #Maximum, the maximum for each variable and species.
+#Empty vector to keep maximums
 maxs <- c()
 
 for (sp in levels(iris$Species)){
@@ -143,16 +154,24 @@ for (sp in levels(iris$Species)){
   }
 }
 
+#Adding the column maximum to data.frame
 d0$maximum <- maxs
 
 #6. Install the package “writexl” and use the command write_xlsx 
 #to create a “yourname.xlsx” file with your data frame.
 
+#Name of the file I want to create
+p <- 'MirkkaPuente.xlsx'
+
+#Actually create the excel file
+#Running library
+library(writexl)
 write_xlsx(
-  list(mysheet = d0),
-  path = tempfile(fileext = "MirkkaPuente.xlsx"),
+  d0,
+  path = tempfile(fileext = p),
   col_names = TRUE,
   format_headers = TRUE,
   use_zip64 = FALSE
 )
+
 
