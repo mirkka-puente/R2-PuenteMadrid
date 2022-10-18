@@ -61,19 +61,21 @@ data <- data.frame(all_genus_species, all_quantitative_variables)
 #Maximum, the maximum for each variable and species.
 
 #Species
-d0 <- data.frame(data$all_genus_species)
+d0 <- data.frame(species=data$all_genus_species)
 
 #Variable
 d0$variables <- (data$all_quantitative_variables)
 
 #Mean
+########## FOR MYSELF ################
 #Selecting setosa species only
-setosa <- iris$Species=="setosa"
+#setosa <- iris$Species=="setosa"
 #Mean of sepal length
-mean(iris$Sepal.Length[setosa])
-mean(iris[[1]][setosa])
+#mean(iris$Sepal.Length[setosa])
+#mean(iris[[1]][setosa])
 #Mean of sepal width
-mean(iris$Sepal.Width[setosa])
+#mean(iris$Sepal.Width[setosa])
+#####################################
 
 #Empty vector for means
 means <- c()
@@ -86,5 +88,70 @@ for (sp in levels(iris$Species)){
 
 d0$means <- (means)
 
+#Standard_error, the standard error for each variable and species.
+l <- length(iris$Species)
+
+standard_errors <- c()
+
+for (sp in levels(iris$Species)){
+  for (i in 1:4){
+    species <- iris$Species == sp
+    s <- sd(iris[[i]][species])
+    se <- s/(sqrt(l))
+    standard_errors <- c(standard_errors,se)
+  }
+}
+d0$standard_error <- standard_errors
+
+#Median, the median for each variable and species.
+
+medians <- c()
+
+for (sp in levels(iris$Species)){
+  for (i in 1:4){
+    species <- iris$Species == sp
+    medians <- c(medians, median(iris[[i]][species]))
+  }
+}
+d0$median <- medians
+
+#Minimum, the minimum for each variable and species.
+mins <- c()
+
+for (sp in levels(iris$Species)){
+  for (i in 1:4){
+    species <- iris$Species == sp
+    mins <- c(mins, min(iris[[i]][species]))
+  }
+}
+
+d0$minimum <- mins
+
+
+#Maximum, the maximum for each variable and species.
+maxs <- c()
+
+for (sp in levels(iris$Species)){
+  for (i in 1:4){
+    species <- iris$Species == sp
+    maxs <- c(maxs, max(iris[[i]][species]))
+  }
+}
+
+d0$maximum <- maxs
+
+#6. Install the package “writexl” and use the command write_xlsx 
+#to create a “yourname.xlsx” file with your data frame.
+
+#Installing packages
+install.packages("writexl")
+library("writexl")
+write_xlsx(
+  d0,
+  path = tempfile(fileext = "Mirkka_Puente.xlsx"),
+  col_names = TRUE,
+  format_headers = TRUE,
+  use_zip64 = FALSE
+)
 
 
