@@ -1,4 +1,4 @@
-# Mirkka Jossette Puente Madrid
+# MP
 # October 18th, 2022
 
 #Install packages (to be run first and one time only)
@@ -161,7 +161,7 @@ d0$maximum <- maxs
 #to create a “yourname.xlsx” file with your data frame.
 
 #Name of the file I want to create
-p <- 'MirkkaPuente.xlsx'
+p <- 'my_file.xlsx'
 
 #Actually create the excel file
 #Running library
