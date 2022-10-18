@@ -152,4 +152,7 @@ write_xlsx(d0, path = tempfile(fileext = "Mirkka_Puente.xlsx"),
            format_headers = TRUE,
            use_zip64 = FALSE
            )
-
+install.packages("xlsx")
+library(xlsx)
+write_xlsx(d0, file="Mirkka_Puente.xlsx", 
+           sheetName="Mirkka")
