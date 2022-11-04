@@ -2,7 +2,7 @@
 # October 18th, 2022
 
 #Install packages (to be run first and one time only)
-install.packages("writexl")
+#install.packages("writexl")
 
 #################### EXERCISES ###################
 #1. Open the data frame in iris {datasets}. Use the help to know 
@@ -97,7 +97,7 @@ d0$means <- (means)
 
 #Standard_error, the standard error for each variable and species.
 #N = number of observations
-l <- length(iris$Species)
+l <- length(iris$Species)/3
 
 #empty vector to save standard_error
 standard_errors <- c()
